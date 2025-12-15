@@ -1,0 +1,6 @@
+@Carsales.RickAndMorty.BFF_HostAddress = http://localhost:5256
+
+GET {{Carsales.RickAndMorty.BFF_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

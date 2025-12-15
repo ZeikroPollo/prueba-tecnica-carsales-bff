@@ -1,0 +1,98 @@
+<div class="episodes-container">
+
+  <h1>Listado de Episodios</h1>
+
+  <!-- Filtros -->
+  <div class="filters">
+
+    <label class="field">
+      <span>Buscar:</span>
+      <input
+        type="text"
+        placeholder="Nombre del episodio"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="onSearchChange($event)"
+      />
+    </label>
+
+    <label class="field">
+      <span>Temporada</span>
+      <select
+        [ngModel]="filterSeason()"
+        (ngModelChange)="onSeasonChange($event)"
+      >
+        <option value="all">Todas</option>
+        <option value="S01">S01</option>
+        <option value="S02">S02</option>
+        <option value="S03">S03</option>
+        <option value="S04">S04</option>
+        <option value="S05">S05</option>
+      </select>
+    </label>
+
+    <button class="btn sort-btn" (click)="toggleSort()">
+      {{ sortAsc() ? 'Ordenar Desc' : 'Ordenar Asc' }}
+    </button>
+
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="loading()">
+    Cargando episodios...
+  </div>
+
+  <!-- Error -->
+  <div class="error" *ngIf="error()">
+    {{ error() }}
+  </div>
+
+  <!-- Tabla -->
+  <table class="episodes-table"
+         *ngIf="!loading() && !error() && pagedEpisodes().length > 0">
+
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Fecha de emisión</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let ep of pagedEpisodes()">
+        <td>{{ ep.episodeCode }}</td>
+        <td>{{ ep.name }}</td>
+        <td>{{ ep.airDate | date: 'MMM d, y' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Sin resultados -->
+  <div class="no-results"
+       *ngIf="!loading() && !error() && pagedEpisodes().length === 0 && hasLoaded()">
+    No se encontraron episodios para esta búsqueda / temporada.
+  </div>
+
+  <!-- Paginación -->
+  <div class="pagination"
+       *ngIf="!loading() && !error() && hasLoaded()">
+
+    <button class="btn"
+            (click)="prevPage()"
+            [disabled]="currentPage() === 1">
+      Anterior
+    </button>
+
+    <span>
+      Página {{ currentPage() }} de {{ totalPages() }}
+    </span>
+
+    <button class="btn"
+            (click)="nextPage()"
+            [disabled]="currentPage() >= totalPages()">
+      Siguiente
+    </button>
+
+  </div>
+
+</div>
