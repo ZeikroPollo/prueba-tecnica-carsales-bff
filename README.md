@@ -16,6 +16,7 @@ Esto permite mayor control sobre los datos expuestos, una mejor separación de r
 
 ## Estructura del repositorio
 
+
 .
 ├── Carsales.RickAndMorty.BFF
 │   ├── Clients
