@@ -16,6 +16,7 @@ Esto permite mayor control sobre los datos expuestos, una mejor separación de r
 
 ## Estructura del repositorio
 
+```text
 .
 ├── Carsales.RickAndMorty.BFF
 │   ├── Clients
@@ -44,7 +45,7 @@ Esto permite mayor control sobre los datos expuestos, una mejor separación de r
 │
 ├── .gitignore
 └── README.md
-
+```
 
 El proyecto Carsales.RickAndMorty.BFF corresponde al Backend For Frontend desarrollado en .NET.
 Este componente es responsable de consumir la API pública de Rick and Morty, procesar la información obtenida y exponer endpoints propios que son consumidos por el frontend.
